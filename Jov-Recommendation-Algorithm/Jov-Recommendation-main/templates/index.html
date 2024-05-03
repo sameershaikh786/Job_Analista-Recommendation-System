@@ -1,0 +1,133 @@
+    <!DOCTYPE html>
+
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Job Analista</title>
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/style.css') }}"> <!---{{ url_for('static',filename='styles/style.css') }}-->
+            <link rel="icon" href="{{ url_for('static',filename='img/icon.png') }}" type="image/x-icon"> <!--{{ url_for('static',filename='icon.png') }}-->
+            <link rel="stylesheet" href="glow.css">
+        </head>
+
+        <body>
+        
+            <header>
+                <img class="logo" src="{{ url_for('static',filename='img/logo1.png') }}" alt="logo" width="100" height="50"> 
+                
+                <nav>
+                    <ul class="navbar">
+                        <!-- <li><a href="{{url_for('home')}}">Home</a></li> -->
+                        <!-- <li><a href="#">About AnaLista</a></li> -->
+                        <!-- <li><a href="">Premium Feature</a></li> -->
+                        <li><a href="http://localhost:8501/" class="" target="_blank"><button> Resume Analyzer </button> </a></li> <!-- Add the "glow" class to the Premium Feature link -->
+  
+                    </ul>
+                </nav>
+                <!-- <a class="git" href="https://github.com/sameershaikh"><button>Github</button></a> -->
+            </header>
+            <center>
+                <h1 class="title"> Upload Your Resume/CV</h1>
+                <form method="POST" action="/submit" enctype="multipart/form-data">
+                    <label for="fileUpload" id="upload">
+                        <img src="{{ url_for('static',filename='img/file-upload.png') }}" alt=""> <!--{{ url_for('static',filename='file-upload.png') }}-->
+                        <span id="text">Choose File</span>
+                    </label>
+                    <input type="file" name="userfile" id="fileUpload" hidden>
+                    <label for="submit">
+                        <img src="{{ url_for('static',filename='img/telegram.png') }}" alt=""> <!--{{ url_for('static',filename='telegram.png') }}-->
+                        <span>Submit</span>
+                    </label>
+                    <input type="submit" id="submit" hidden>
+                </form>
+                <div id="result" class="job_recommendation">
+                    <table>
+                        <tr>
+                            {% for col in column_names %}
+                            <th>{{col}}</th>
+                            {% endfor %}
+                        </tr>
+                        {% for row in row_data %}
+                        <tr>
+                            {% for col, row_ in zip(column_names, row) %}
+                            {% if col == link_column %}
+                            <td>
+                                <a href="{{row_}}">
+                                    <button type="submit" value={{ row_ }} name="link" form="link_form" class="link_button">
+                                        Apply
+                                    </button>
+                                </a>
+                            </td>
+                            {% else %}
+                            <td>{{row_}}</td>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    
+                    </table>
+                </div>
+            
+                
+                
+            </center>
+            <!-- <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <h2>Welcome to Job Anlista Premium!</h2>
+                    <p>Unlock advanced features, including our Smart Resume Analyzer for personalized job recommendations.</p>
+                    <a href="" target="_blank"><button class="glow">Explore Smart Resume Analyzer</button> &#8592; Click here </a>
+                </div>
+            </div> -->
+            <footer>
+                <div class="copyright">
+                    <!-- <small>Copyright &copy; 2024 - Job Analsita. All Rights Reserved</small> -->
+                </div>
+            </footer>
+
+            <script src="{{ url_for('static',filename='java/button.js') }}">
+// JavaScript for Modal Popup
+// JavaScript for Modal Popup
+// let popup = document.getElementById('popup'); // Get the modal element
+
+// // Function to open the modal
+// function openPopup() {
+//     popup.style.display = 'block'; // Display the modal
+// }
+
+// // Function to close the modal
+// function closePopup() {
+//     popup.style.display = 'none'; // Hide the modal
+// }
+
+// // Event listener to open the modal when Premium Feature is clicked
+// document.addEventListener('DOMContentLoaded', function() {
+//     const premiumFeatureLink = document.querySelector('.navbar li:nth-child(3) a'); // Adjust this selector as needed
+//     premiumFeatureLink.addEventListener('click', function(event) {
+//         event.preventDefault(); // Prevent default link behavior
+//         openPopup(); // Open the modal
+//     });
+// });
+
+// // Close the modal when the close button is clicked
+// document.querySelector('.close').addEventListener('click', closePopup);
+
+// // Reset modal state when clicking outside the modal (optional)
+// window.addEventListener('click', function(event) {
+//     if (event.target == popup) {
+//         closePopup(); // Close the modal if clicked outside its content
+//     }
+// });
+
+
+            </script>
+            <!-- {% include 'popup.html' %} -->
+            <!--{{ url_for('static',filename='java/button.js') }}-->
+            
+        </body>
+    </html>
+
+
+
